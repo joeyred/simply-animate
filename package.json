@@ -1,22 +1,27 @@
 {
   "name": "simply-animate",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "A simple multi-step animation utility with all kinds of hooks for the simpliest to the most complex needs in a small footprint",
   "repository": {
     "type": "git",
     "url": "https://github.com/joeyred/simply-animate"
   },
+  "bugs": {
+    "url": "https://github.com/joeyred/simply-animate/issues"
+  },
+  "homepage": "https://github.com/joeyred/simply-animate#readme",
   "main": "./dist/simply-animate.js",
+  "types": "./dist/index.d.ts",
   "scripts": {
     "test": "jest",
     "start": "webpack-dev-server --progress --color --mode development --open --config demo/webpack.config.js",
-    "build": "webpack --progress --color --mode production"
+    "build": "NODE_ENV=production webpack --progress --color --mode production"
   },
   "keywords": [
     "animation",
     "typescript"
   ],
-  "author": "Brian Hayes",
+  "author": "Brian Hayes <brianhayescodes@gmail.com>",
   "license": "MIT",
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^3.7.1",
