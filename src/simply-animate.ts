@@ -5,7 +5,7 @@ import {
   Classes,
   Config,
   Duration
-} from './interfaces';
+} from './types';
 
 let config = {
   namespace:  'animation',

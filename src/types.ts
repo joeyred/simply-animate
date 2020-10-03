@@ -18,9 +18,9 @@ export interface HookParams {
  * @param  progress.series  - Progress of entire animation series represented as a number between 0 and 1.
  * @param  progress.currentStep - Progress of the active step represented as a number between 0 and 1.
  */
-type HookFunction = ({element, progress}: HookParams) => void;
+export type HookFunction = ({element, progress}: HookParams) => void;
 
-interface StepHooks {
+export interface StepHooks {
   /**
    * Fires at the beginning of the step, before classes are updated, but after `beforeEachFrame`
    * when the hooks share a frame.
@@ -37,7 +37,7 @@ interface StepHooks {
   after?: HookFunction
 }
 
-interface Hooks {
+export interface Hooks {
   /** Fires before the first animation frame is requested. */
   before?: HookFunction,
   /** Fires at the beginning of each step, before the css classes are updated. */
