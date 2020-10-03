@@ -1,35 +1,17 @@
 const path = require('path');
 
-// const prod = process.env.NODE_ENV === 'production' ? true :  false;
+const isProd = process.env.NODE_ENV === 'production';
 
-// function getConfig() {
-//   return {
-//     devtool: 'inline-source-map',
-//     entry:   `${__dirname}/src/index.ts`,
-//     output:  {
-//       path:     path.resolve(__dirname, 'dist'),
-//       filename: 'simply-animate.js',
-//     },
-//     module: {
-//       rules: [
-//         // TypeScript
-//         {
-//           test:    /\.ts?$/,
-//           use:     'ts-loader',
-//           exclude: /node_modules/
-//         },
-//       ]
-//     },
-//   }
-// }
-
-// module.exports = getConfig();
 module.exports = {
   devtool: 'source-map',
-  entry:   `${__dirname}/src/simply-animate.ts`,
+  entry:   `${__dirname}/src/index.ts`,
   output:  {
     path:     path.resolve(__dirname, 'dist'),
     filename: 'simply-animate.js',
+  },
+  resolve: {
+    // Add `.ts` and `.tsx` as a resolvable extension.
+    extensions: [".ts", ".tsx", ".js"]
   },
 
   module: {
@@ -37,7 +19,13 @@ module.exports = {
       // TypeScript
       {
         test:    /\.ts?$/,
-        use:     'ts-loader',
+        use:     {
+          loader: 'ts-loader',
+          options: {
+            configFile: isProd ? 'tsconfig.build.json' : 'tsconfig.json'
+          },
+        },
+        
         exclude: /node_modules/
       },
     ]
