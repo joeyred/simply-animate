@@ -8,13 +8,52 @@ Currently built for use with HTMLElements, but can also just be used purely for 
 
 TODO add the install instructions and such
 
+Getting started with the `animationSeries` function is fairly simple. All you have to do is call the function, and pass step objects to it.
+
+The easiest way to use this function is to pass an HTMLElement to it, define durations and step names for each step, and use CSS to apply whatever animations, transitions, or styles needed for each step.
+
 ```js
 import animationSeries from 'simply-animate';
 
-// INCLUDE EXAMPLE HERE
+// Basic Example
+animationSeries({
+  element: document.getElementById('exampleThingToAnimate'),
+  seriesClassName: 'series-example',
+  steps: [
+    {
+      name: 'action-1',
+      duration: 300
+    },
+    {
+      name: 'action-2',
+      duration: 400
+    }
+  ]
+});
 ```
 
-## The Main Function
+In this example, a few classes will be added to the element passed. An "in progress" class, as well as step classes. The step classes, however, are added and removed as the series executes each step.
+
+The "in progress" class for this example:
+`.animation__series-example__in-progress`
+
+Step 1's class:
+`.animation__series-example__action-1`
+
+Step 2's class:
+`.animation__series-example__action-2`
+
+When the series is finished, all remaining classes added will be removed.
+
+## TypeScript
+
+To get access to the types and interfaces included in this package:
+
+```ts
+// TODO Add Example
+```
+
+## API
 
 The `animationSeries` function takes an object as its argument.
 
