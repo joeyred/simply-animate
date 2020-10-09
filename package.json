@@ -23,6 +23,10 @@
   ],
   "author": "Brian Hayes <brianhayescodes@gmail.com>",
   "license": "MIT",
+  "files": [
+    "/dist",
+    "/src"
+  ],
   "devDependencies": {
     "@types/jest": "^26.0.14",
     "@typescript-eslint/eslint-plugin": "^3.7.1",
