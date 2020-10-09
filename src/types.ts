@@ -62,7 +62,7 @@ export interface Config {
 
 export interface Step {
   /** Name of the step to be used in the CSS class name. */
-  name: string,
+  name?: string,
   /**
    * Duration of the step in frames (not ms, but will sync
    * with ms defined in any CSS transition or animation).
