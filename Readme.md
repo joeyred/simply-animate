@@ -1,5 +1,11 @@
 # Simply Animate
 
+<div style="background: #CE5755; color: #fdfdfd; padding: 0.5rem 1rem; margin-bottom: 2rem;">
+  <div style="font-size: 1.6em; font-weight: bold; margin-bottom: 1rem;">WARNING!</div>
+  <p>Do not use this package in production until it has reached v0.1.0!</p>
+  <p>This package is currently under rapid development and new versions before v0.1.0 may be broken, or have completely breaking changes from one version to the next. This project is my first dive into publishing TypeScript based npm packages, and I'm still working out the kinks!</p>
+</div>
+
 A small utility function for handling multi-step animations. Can handle everything from the most simple use cases to much more complex ones with an extremely robust hook system. All without sacrificing speed.
 
 Currently built for use with HTMLElements, but can also just be used purely for it's hooks, making it easy to use with libraries like React, Redux, Vue, and so on.

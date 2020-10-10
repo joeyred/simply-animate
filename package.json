@@ -1,6 +1,6 @@
 {
   "name": "simply-animate",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "A simple multi-step animation utility with all kinds of hooks for the simpliest to the most complex needs in a small footprint",
   "repository": {
     "type": "git",
