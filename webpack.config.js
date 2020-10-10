@@ -4,7 +4,7 @@ const isProd = process.env.NODE_ENV === 'production';
 
 module.exports = {
   devtool: 'source-map',
-  entry:   `${__dirname}/src/index.ts`,
+  entry:   `${__dirname}/src/simply-animate.ts`,
   output:  {
     path:     path.resolve(__dirname, 'dist'),
     filename: 'simply-animate.js',
