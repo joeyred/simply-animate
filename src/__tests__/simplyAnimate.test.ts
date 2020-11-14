@@ -1,4 +1,4 @@
-import animationSeries from './simply-animate';
+import {animationSeries} from '../simply-animate';
 
 describe('animationSeries', () => {
   it('should import', () => {
