@@ -2,9 +2,11 @@
   "extends": "./tsconfig.json",
   "compilerOptions": {
     "rootDir": "./src",
-    "baseUrl": "./src",
+    // "baseUrl": "./src",
+    "removeComments": true,
     "declaration": true,
     "outDir": "./dist",
   },
-  "exclude": ["./demo", "./test"]
+  "include": ["src"],
+  "exclude": ["node_modules", "./demo", "**/__tests__/*"]
 }
