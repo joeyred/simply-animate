@@ -5,11 +5,11 @@ let config = {
   inProgress: 'in-progress'
 };
 
-export function updateConfig(newConfig: Types.Config): void {
+function updateConfig(newConfig: Types.Config): void {
   config = Object.assign({}, config, newConfig);
 }
 
-export default function animationSeries({
+function animationSeries({
   element,
   namespaceClassName,
   seriesClassName,
@@ -192,4 +192,15 @@ export default function animationSeries({
   window.requestAnimationFrame(animationFrame);
 }
 
-export {Types};
+const SimplyAnimate = {
+  animationSeries,
+  updateConfig,
+  Types
+};
+
+export default SimplyAnimate;
+export {
+  animationSeries,
+  updateConfig,
+  Types
+};

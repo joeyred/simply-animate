@@ -1,9 +1,11 @@
 {
   "compilerOptions": {
     "module": "commonjs",
+    "moduleResolution": "node",
     "target": "es2015",
     "sourceMap": true,
     "strict": true,
-    "rootDir": "./"
+    "rootDir": "./",
+    "pretty": true
   }
 }

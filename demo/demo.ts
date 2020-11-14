@@ -1,8 +1,12 @@
-import animationSeries from '../src/simply-animate';
+import {animationSeries} from '../dist/simply-animate';
 
 animationSeries({
   seriesClassName: 'demo',
-  steps:           [
+  hooks:           {
+    before: () => console.log('before!'),
+    after:  () => console.log('after!')
+  },
+  steps: [
     {
       name:     'hello',
       duration: 300
