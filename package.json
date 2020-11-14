@@ -1,6 +1,6 @@
 {
   "name": "simply-animate",
-  "version": "0.0.3",
+  "version": "0.0.6",
   "description": "A simple multi-step animation utility with all kinds of hooks for the simpliest to the most complex needs in a small footprint",
   "repository": {
     "type": "git",
@@ -14,8 +14,12 @@
   "types": "./dist/simply-animate.d.ts",
   "scripts": {
     "test": "jest",
+    "test:build": "npm run build && cross-env TEST_ENV=ci jest",
+    "ci": "cross-env TEST_ENV=ci jest",
     "start": "webpack-dev-server --progress --color --mode development --open --config demo/webpack.config.js",
-    "build": "NODE_ENV=production webpack --progress --color --mode production"
+    "demo-test": "webpack-dev-server --progress --color --mode development",
+    "build": "cross-env NODE_ENV=production webpack --progress --color",
+    "prepublishOnly": "npm run test:build"
   },
   "keywords": [
     "animation",
@@ -24,13 +28,13 @@
   "author": "Brian Hayes <brianhayescodes@gmail.com>",
   "license": "MIT",
   "files": [
-    "/dist",
-    "/src"
+    "/dist"
   ],
   "devDependencies": {
     "@types/jest": "^26.0.14",
     "@typescript-eslint/eslint-plugin": "^3.7.1",
     "@typescript-eslint/parser": "^3.7.1",
+    "cross-env": "^7.0.2",
     "css-loader": "^4.2.2",
     "eslint": "^7.5.0",
     "eslint-config-gingabulous": "0.0.1",
