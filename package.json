@@ -1,6 +1,6 @@
 {
   "name": "simply-animate",
-  "version": "0.0.6",
+  "version": "1.0.0",
   "description": "A simple multi-step animation utility with all kinds of hooks for the simpliest to the most complex needs in a small footprint",
   "repository": {
     "type": "git",
@@ -19,7 +19,9 @@
     "start": "webpack-dev-server --progress --color --mode development --open --config demo/webpack.config.js",
     "demo-test": "webpack-dev-server --progress --color --mode development",
     "build": "cross-env NODE_ENV=production webpack --progress --color",
-    "prepublishOnly": "npm run test:build"
+    "prepublishOnly": "npm run test:build",
+    "docs:json": "node ./scripts/typedoc.js",
+    "docs:td": "typedoc --json ./docs/data.json ./src/simply-animate.ts"
   },
   "keywords": [
     "animation",
@@ -46,10 +48,10 @@
     "style-loader": "^1.2.1",
     "ts-jest": "^26.4.1",
     "ts-loader": "^8.0.3",
+    "typedoc": "^0.20.19",
     "typescript": "^3.9.7",
     "webpack": "^4.44.0",
     "webpack-cli": "^3.3.12",
     "webpack-dev-server": "^3.11.0"
-  },
-  "dependencies": {}
+  }
 }
