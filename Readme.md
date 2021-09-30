@@ -1,25 +1,30 @@
 # Simply Animate
 
-<div style="background: #CE5755; color: #fdfdfd; padding: 0.5rem 1rem; margin-bottom: 2rem;">
-  <div style="font-size: 1.6em; font-weight: bold; margin-bottom: 1rem;">WARNING!</div>
-  <p>Do not use this package in production until it has reached v0.1.0!</p>
-  <p>This package is currently under rapid development and new versions before v0.1.0 may be broken, or have completely breaking changes from one version to the next. This project is my first dive into publishing TypeScript based npm packages, and I'm still working out the kinks!</p>
-</div>
-
 A small utility function for handling multi-step animations. Can handle everything from the most simple use cases to much more complex ones with an extremely robust hook system. All without sacrificing speed.
 
 Currently built for use with HTMLElements, but can also just be used purely for it's hooks, making it easy to use with libraries like React, Redux, Vue, and so on.
 
 ## Getting Started
 
-TODO add the install instructions and such
+To install with npm
+
+```bash
+npm install simply-animate --save
+```
+
+To install with yarn
+
+```bash
+yarn add simply-animate
+```
+
 
 Getting started with the `animationSeries` function is fairly simple. All you have to do is call the function, and pass step objects to it.
 
 The easiest way to use this function is to pass an HTMLElement to it, define durations and step names for each step, and use CSS to apply whatever animations, transitions, or styles needed for each step.
 
 ```js
-import animationSeries from 'simply-animate';
+import { animationSeries } from 'simply-animate';
 
 // Basic Example
 animationSeries({
@@ -38,6 +43,18 @@ animationSeries({
 });
 ```
 
+```html
+<!-- HTML durring step 1 -->
+<div class="animation__series-example__action-1 animation__series-example__in-progress">
+  <!-- Content!! -->
+</div>
+
+<!-- HTML durring step 1 -->
+<div class="animation__series-example__action-2 animation__series-example__in-progress">
+  <!-- Content!! -->
+</div>
+```
+
 In this example, a few classes will be added to the element passed. An "in progress" class, as well as step classes. The step classes, however, are added and removed as the series executes each step.
 
 The "in progress" class for this example:
@@ -52,11 +69,15 @@ Step 2's class:
 When the series is finished, all remaining classes added will be removed.
 
 ## TypeScript
+This package is written in typescript and should be compatable out-of-the-box.
 
-To get access to the types and interfaces included in this package:
-
+However, to get access to the types and interfaces included in this package directly:
+(just in case. It's an edge case, but who knows?)
 ```ts
-// TODO Add Example
+import { Types } from 'simply-animate';
+
+// Or if you have to rename
+import { Types as MyNewTypes } from 'simply-animate';
 ```
 
 ## API
@@ -115,3 +136,52 @@ All hook functions are passed an object as a single param.
 | `progress` | object | Object containing different progresses of the animation. |
 | `progress.series` | number | Progress of entire animation series represented as a number between 0 and 1. |
 | `progress.step` | number | Progress of the active step represented as a number between 0 and 1. |
+
+
+## Config Function
+
+This function can be globally configured with the `updateConfig` function. 
+
+***Warning*:** This is **NOT** a function by function basis, and will update values that all uses of this function will use. There may be a future update where each function can be individually configered if there is enough need for it.
+
+The current config object has two keys. 
+
+| Key | Type | Description |
+| ----- | ---- | ----------- |
+| `namespace` | string | The namespace that will be used in the animation css classes added to the passed HTMLElement |
+| `inProgress` | string | The terminology that will be used when the css classes are added to allow targeting based on the animation being in progress at all |
+
+```ts
+import { updateConfig } from 'simply-animate';
+
+updateConfig({
+  namespace: 'new-namespace-name',
+  inProgress: 'is-active'
+});
+
+animationSeries({
+  element: document.getElementById('exampleThingToAnimate'),
+  seriesClassName: 'series-example',
+  steps: [
+    {
+      name: 'action-1',
+      duration: 300
+    },
+    {
+      name: 'action-2',
+      duration: 400
+    }
+  ]
+});
+``` 
+
+In the example above, the following classes would be generated:
+
+The "in progress" class for this example:
+`.new-namespace-name__series-example__is-active`
+
+Step 1's class:
+`.new-namespace-name__series-example__action-1`
+
+Step 2's class:
+`.new-namespace-name__series-example__action-2`
