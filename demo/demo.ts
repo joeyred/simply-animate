@@ -1,4 +1,4 @@
-import {animationSeries} from '../dist/simply-animate';
+import {animationSeries} from '../src/simply-animate';
 
 animationSeries({
   seriesClassName: 'demo',
