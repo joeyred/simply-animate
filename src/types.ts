@@ -84,7 +84,18 @@ export interface AnimationSeries {
 
 export interface Duration {
   stepsFiredMinusCurrent: number,
+  /**
+   * This acts as a way to keep track of steps being fired, and when to fire them.
+   * When a step is fired, the duration of that step is added to the current duration.
+   * That number can now be checked against to find out if it is time to end the current
+   * step, and fire the next one, or move on to ending the animation.
+   */
   stepsFired: number,
+  /**
+   * This is simply the total durration of the animation series.
+   * When the animation begins, all the steps will be looped through, and their
+   * durations will be added up to get the total.
+   */
   total: number
 }
 
