@@ -1,9 +1,0 @@
-{
-  "extends": "./tsconfig.json",
-  "compilerOptions": {
-    "rootDir": "./demo",
-    "baseUrl": "./demo",
-    "outDir": "./demo",
-  },
-  "exclude": ["./src", "./src/__tests__"]
-}
