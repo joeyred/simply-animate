@@ -1,6 +1,6 @@
 export interface HookParams {
   /** HTMLElement passed to the AnimationSeries function. */
-  element?: HTMLElement,
+  element?: Element,
   /** Object containing different progresses of the animation. */
   progress?: {
     /** Progress of entire animation series represented as a number between 0 and 1. */
@@ -74,7 +74,7 @@ export interface Step {
 
 export interface AnimationSeries {
   /** HTMLElement object that the animation classes will be applied to. */
-  element?: HTMLElement,
+  element?: Element,
   /** The first namespace in the CSS class name. defaults to `animation` or what is set using `updateConfig`. */
   namespaceClassName?: string,
   seriesClassName: string,
