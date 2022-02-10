@@ -1,12 +1,15 @@
 {
-  "extends": "./tsconfig.json",
+  "extends": "./tsconfig.base.json",
   "compilerOptions": {
     "rootDir": "./src",
-    // "baseUrl": "./src",
-    "removeComments": true,
-    "declaration": true,
     "outDir": "./dist",
+    "removeComments": true,
+    "declaration": true
   },
   "include": ["src"],
-  "exclude": ["node_modules", "./demo", "**/__tests__/*"]
+  "exclude": [
+    "node_modules",
+    "./demo",
+    "**/__tests__/*"
+  ]
 }
