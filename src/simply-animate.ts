@@ -28,8 +28,9 @@ function animationSeries({
       step:   0
     }
   };
-  const namespace = namespaceClassName || config.namespace;
-  const inProgress = config.inProgress;
+
+  const namespace = namespaceClassName || config?.namespace || 'animation';
+  const inProgress = config?.inProgress || 'inprogess';
   const classes: Types.Classes = {
     inProgress: `${namespace}__${seriesClassName}__${inProgress}`,
     current:    '',
@@ -73,14 +74,14 @@ function animationSeries({
    *
    * @param timestamp - The timestamp in ms generated from DOMHighResTimeStamp
    */
-  function animationFrame(timestamp: number) { // eslint-disable-line complexity
+  function animationFrame(timestamp: number): void { // eslint-disable-line complexity
     // make sure the timestamp from the first requested frame is set as `start`
     start = start === 0 ? timestamp : start;
 
     // The time that has elapsed since the animation series began
     const runtime = timestamp - start;
     const step: Types.Step = steps[stepIndex];
-    // This will allow for no longer neding to pass a name to each step, by setting a default.
+    // This will allow for no longer needing to pass a name to each step, by setting a default.
     // If this function only needs to be used for basic hooks, then there's
     // no need for class names.
     const stepName: string = step.name ? step.name : `step-${stepIndex + 1}`;
@@ -93,10 +94,6 @@ function animationSeries({
         step:   Math.min((runtime - duration.stepsFiredMinusCurrent) / step.duration, 1)
       }
     };
-    // const progress = {
-    //   series:      Math.min(runtime / duration.total, 1),
-    //   currentStep: Math.min((runtime - duration.stepsFiredMinusCurrent) / step.duration, 1)
-    // };
 
     if (element) {
       // Add element node to hook params.
@@ -105,23 +102,27 @@ function animationSeries({
       element.classList.add(classes.inProgress);
     }
 
-    // ======== //
-    // HOOK: Before Each Frame
-    // ======== //
-    if (hooks && hooks.beforeEachFrame) hooks.beforeEachFrame(hookParams);
-    if (stepHooks && stepHooks.beforeEachFrame) stepHooks.beforeEachFrame(hookParams);
-
     // ================================================================== //
-    // THE FAKE LOOP THAT ISNT A REAL LOOP
+    // TIME TO FAKE A LOOP!
     //
-    // This is used to detect when to fire each step
+    // This is used to detect when to fire each step.
     //
-    // If the runtime is greater than or equal to the current duration of steps so far, and
+    // Everything in this conditional block will run for the initialization
+    // of a new step.
+    //
+    // Condition:
+    //
+    // If the runtime is greater than or equal to the current duration of
+    // steps so far,
+    //
+    // and
+    //
     // the step in the current index hasnt been fired yet, then run the code for the next step.
     // ================================================================== //
     if (runtime >= duration.stepsFired && stepsFired[stepIndex] === false) {
       // Assign the current step name as the current class name after the namespaces
       classes.current = `${namespace}__${seriesClassName}__${stepName}`;
+
       // ======== //
       // HOOK: Before Each Step
       // ======== //
@@ -151,7 +152,19 @@ function animationSeries({
         duration.stepsFiredMinusCurrent = duration.stepsFired + 0;
         duration.stepsFired += step.duration;
       }
-    }
+    } // END STEP INIT
+
+    // ======== //
+    // HOOK: Before Each Frame
+    // ======== //
+    if (hooks && hooks.beforeEachFrame) hooks.beforeEachFrame(hookParams);
+    if (stepHooks && stepHooks.beforeEachFrame) stepHooks.beforeEachFrame(hookParams);
+
+    // ======== //
+    // HOOK: afterEachFrame
+    // ======== //
+    if (stepHooks && stepHooks.afterEachFrame) stepHooks.afterEachFrame(hookParams);
+    if (hooks && hooks.afterEachFrame) hooks.afterEachFrame(hookParams);
 
     // If the runtime is greater than total of the durations of steps fired,
     // then increment `stepIndex`.
@@ -165,12 +178,6 @@ function animationSeries({
       stepIndex += 1;
     }
 
-    // ======== //
-    // HOOK: afterEachFrame
-    // ======== //
-    if (hooks && hooks.afterEachFrame) hooks.afterEachFrame(hookParams);
-    if (stepHooks && stepHooks.afterEachFrame) stepHooks.afterEachFrame(hookParams);
-
     // Invoke the next frame as long as the total duration of the
     // animation series hasn't been exceded.
     if (runtime < duration.total) { // eslint-disable-line curly
@@ -180,6 +187,7 @@ function animationSeries({
       // HOOK: after
       // ======== //
       if (hooks && hooks.after) hooks.after(hookParams);
+      // Remove all added css classes
       if (element) element.classList.remove(classes.inProgress, classes.current);
     }
   }
