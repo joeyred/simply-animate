@@ -44,6 +44,7 @@
     "execa": "^6.0.0",
     "jest": "^26.4.2",
     "minimist": "^1.2.5",
+    "sass": "^1.49.7",
     "sass-loader": "^12.4.0",
     "semver": "^7.3.5",
     "snowpack": "^3.8.8",

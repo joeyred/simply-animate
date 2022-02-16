@@ -13,6 +13,7 @@ specifiers:
   execa: ^6.0.0
   jest: ^26.4.2
   minimist: ^1.2.5
+  sass: ^1.49.7
   sass-loader: ^12.4.0
   semver: ^7.3.5
   snowpack: ^3.8.8
@@ -38,7 +39,8 @@ devDependencies:
   execa: 6.0.0
   jest: 26.6.3
   minimist: 1.2.5
-  sass-loader: 12.4.0_webpack@5.68.0
+  sass: 1.49.7
+  sass-loader: 12.4.0_sass@1.49.7+webpack@5.68.0
   semver: 7.3.5
   snowpack: 3.8.8
   style-loader: 3.3.1_webpack@5.68.0
@@ -3835,6 +3837,10 @@ packages:
     engines: {node: '>= 4'}
     dev: true
 
+  /immutable/4.0.0:
+    resolution: {integrity: sha512-zIE9hX70qew5qTUjSS7wi1iwj/l7+m54KWU247nhM3v806UdGj1yDndXj+IOYxxtW9zyLI+xqFNZjTuDaLUqFw==}
+    dev: true
+
   /import-fresh/3.3.0:
     resolution: {integrity: sha512-veYYhQa+D1QBKznvhUHxb8faxlrwUnxseDAbAp457E0wLNio2bOSKnjYDhMj+YiAq61xrMGhQk9iXVk5FzgQMw==}
     engines: {node: '>=6'}
@@ -6323,7 +6329,7 @@ packages:
       walker: 1.0.8
     dev: true
 
-  /sass-loader/12.4.0_webpack@5.68.0:
+  /sass-loader/12.4.0_sass@1.49.7+webpack@5.68.0:
     resolution: {integrity: sha512-7xN+8khDIzym1oL9XyS6zP6Ges+Bo2B2xbPrjdMHEYyV3AQYhd/wXeru++3ODHF0zMjYmVadblSKrPrjEkL8mg==}
     engines: {node: '>= 12.13.0'}
     peerDependencies:
@@ -6341,7 +6347,18 @@ packages:
     dependencies:
       klona: 2.0.5
       neo-async: 2.6.2
+      sass: 1.49.7
       webpack: 5.68.0_webpack-cli@4.9.2
+    dev: true
+
+  /sass/1.49.7:
+    resolution: {integrity: sha512-13dml55EMIR2rS4d/RDHHP0sXMY3+30e1TKsyXaSz3iLWVoDWEoboY8WzJd5JMnxrRHffKO3wq2mpJ0jxRJiEQ==}
+    engines: {node: '>=12.0.0'}
+    hasBin: true
+    dependencies:
+      chokidar: 3.5.3
+      immutable: 4.0.0
+      source-map-js: 1.0.2
     dev: true
 
   /saxes/5.0.1:
