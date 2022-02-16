@@ -47,6 +47,6 @@ const config = {
   }
 };
 
-console.dir(JSON.stringify(config, null, 2));
+// console.dir(JSON.stringify(config, null, 2));
 
 module.exports = config;

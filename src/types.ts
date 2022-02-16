@@ -3,6 +3,7 @@ export interface HookParams {
   element?: Element,
   /** Object containing different progresses of the animation. */
   progress?: {
+    ms: number,
     /** Progress of entire animation series represented as a number between 0 and 1. */
     series: number,
     /** Progress of the active step represented as a number between 0 and 1. */

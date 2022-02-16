@@ -3,13 +3,17 @@
 <html>
   <head>
     <title>Animation Demo</title>
-    <link rel="stylesheet" href="demo.css" />
+    <!-- <link rel="stylesheet" href="demo.css" /> -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
   </head>
   <body>
 
     <div class="site-wrapper">
       <div class="site-inner">
+        <div class="button-container">
+          <button data-animate="demo">Start Animation</button>
+          <button data-debug="output">Output Debug Info</button>
+        </div>
         <div class="animation-demo-yay">
           <p>
             Quid securi etiam tamquam eu fugiat nulla pariatur. Curabitur est gravida et libero vitae dictum. Donec sed odio operae, eu vulputate felis rhoncus. Quisque ut dolor gravida, placerat libero vel, euismod. Quis aute iure reprehenderit in voluptate velit esse.
@@ -23,6 +27,7 @@
         </div>
       </div>
     </div>
+    <div id="debug" class="debug-container"></div>
     <!-- <script src="src/simply-animate.js"></script> -->
     <script type="module" src="bundle.js"></script>
   </body>

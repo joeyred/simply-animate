@@ -24,6 +24,7 @@ function animationSeries({
   // This is also done to handle the optional passing of an HTMLElement to `element`
   const beforeHookParams: Types.HookParams = {
     progress: {
+      ms:     0,
       series: 0,
       step:   0
     }
@@ -88,12 +89,14 @@ function animationSeries({
     const stepHooks = step ? step.hooks : null;
     const hookParams: Types.HookParams = {
       progress: {
+        ms:     runtime,
         // progress of entire animation series represented as a number between 0 and 1.
         series: Math.min(runtime / duration.total, 1),
         // progress of the active step represented as a number between 0 and 1.
         step:   Math.min((runtime - duration.stepsFiredMinusCurrent) / step.duration, 1)
       }
     };
+    // console.log(hookParams);
 
     if (element) {
       // Add element node to hook params.
