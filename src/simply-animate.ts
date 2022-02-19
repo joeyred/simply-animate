@@ -139,10 +139,10 @@ function animationSeries({
       if (element) element.classList.add(classes.current);
 
       // ======== //
-      // HOOK: during
+      // HOOK: afterClassNameChange
       // ======== //
-      if (hooks && hooks.duringEachStep) hooks.duringEachStep(hookParams);
-      if (stepHooks && stepHooks.during) stepHooks.during(hookParams);
+      if (hooks && hooks.afterEachClassNameChange) hooks.afterEachClassNameChange(hookParams);
+      if (stepHooks && stepHooks.afterClassNameChange) stepHooks.afterClassNameChange(hookParams);
 
       // Set previous properties for the next step to use
       classes.previous = `${namespace}__${seriesClassName}__${stepName}`;
@@ -160,14 +160,20 @@ function animationSeries({
     // ======== //
     // HOOK: Before Each Frame
     // ======== //
-    if (hooks && hooks.beforeEachFrame) hooks.beforeEachFrame(hookParams);
-    if (stepHooks && stepHooks.beforeEachFrame) stepHooks.beforeEachFrame(hookParams);
+    // if (hooks && hooks.beforeEachFrame) hooks.beforeEachFrame(hookParams);
+    // if (stepHooks && stepHooks.beforeEachFrame) stepHooks.beforeEachFrame(hookParams);
+
+    // ======== //
+    // HOOK: On Each Frame
+    // ======== //
+    if (hooks && hooks.onEachFrame) hooks.onEachFrame(hookParams);
+    if (stepHooks && stepHooks.onEachFrame) stepHooks.onEachFrame(hookParams);
 
     // ======== //
     // HOOK: afterEachFrame
     // ======== //
-    if (stepHooks && stepHooks.afterEachFrame) stepHooks.afterEachFrame(hookParams);
-    if (hooks && hooks.afterEachFrame) hooks.afterEachFrame(hookParams);
+    // if (stepHooks && stepHooks.afterEachFrame) stepHooks.afterEachFrame(hookParams);
+    // if (hooks && hooks.afterEachFrame) hooks.afterEachFrame(hookParams);
 
     // If the runtime is greater than total of the durations of steps fired,
     // then increment `stepIndex`.

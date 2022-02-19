@@ -3,6 +3,7 @@ export interface HookParams {
   element?: Element,
   /** Object containing different progresses of the animation. */
   progress?: {
+    /** DO NOT USE - This will probably go away. It mostly exists for debugging */
     ms: number,
     /** Progress of entire animation series represented as a number between 0 and 1. */
     series: number,
@@ -28,12 +29,14 @@ export interface StepHooks {
    */
   before?: HookFunction,
   /** Fires after classes have been updated, but after the `duringEachStep` series hook. */
-  during?: HookFunction,
+  // during?: HookFunction,
+  afterClassNameChange?: HookFunction,
   /** Fires at the beginning of each frame but after the `beforeEachFrame` series hook. */
-  beforeEachFrame?: HookFunction,
+  // beforeEachFrame?: HookFunction,
   // duringEachFrame?: HookFunction,
   /** Fires at the end of each frame, after all step hooks that share the frame. */
-  afterEachFrame?: HookFunction,
+  // afterEachFrame?: HookFunction,
+  onEachFrame?: HookFunction,
   /** Fires at the end of each step, but after `afterEachStep` series hook. */
   after?: HookFunction
 }
@@ -44,12 +47,14 @@ export interface Hooks {
   /** Fires at the beginning of each step, before the css classes are updated. */
   beforeEachStep?: HookFunction,
   /** Fires after css classes are updated for each step. */
-  duringEachStep?: HookFunction,
+  // duringEachStep?: HookFunction,
+  afterEachClassNameChange?: HookFunction,
   /** Fires before every frame. */
-  beforeEachFrame?: HookFunction,
+  // beforeEachFrame?: HookFunction,
   // duringEachFrame?: HookFunction,
   /** Fires after every frame, but before `afterEachStep` hook is fired when the hooks share a frame. */
-  afterEachFrame?: HookFunction,
+  // afterEachFrame?: HookFunction,
+  onEachFrame?: HookFunction,
   /** Fires at the end of each step, at the same time the step index is being incremented. */
   afterEachStep?: HookFunction,
   /** Fires at the end of all the steps, in place of requesting another animation frame. */
