@@ -89,6 +89,7 @@ export interface AnimationSeries {
 }
 
 export interface Duration {
+  /** TODO DOCUMENT ME */
   stepsFiredMinusCurrent: number,
   /**
    * This acts as a way to keep track of steps being fired, and when to fire them.
@@ -105,7 +106,7 @@ export interface Duration {
   total: number
 }
 
-export interface Classes {
+export interface ClassNames {
   inProgress: string,
   current: string,
   previous: string

@@ -1,11 +1,19 @@
-import * as Types from './types';
+// import type * as Types from './types';
+import type {
+  Config,
+  AnimationSeries,
+  HookParams,
+  ClassNames,
+  Duration,
+  Step
+} from './types';
 
 let config = {
   namespace:  'animation',
   inProgress: 'in-progress'
 };
 
-function updateConfig(newConfig: Types.Config): void {
+function updateConfig(newConfig: Config): void {
   config = Object.assign({}, config, newConfig);
 }
 
@@ -15,14 +23,14 @@ function animationSeries({
   seriesClassName,
   hooks,
   steps
-}: Types.AnimationSeries): void {
+}: AnimationSeries): void {
   let stepIndex = 0;
   let start = 0;
   // Purely meant to be passed to the before hook, as it is fired
   // before the first animation frame is requested.
   //
   // This is also done to handle the optional passing of an HTMLElement to `element`
-  const beforeHookParams: Types.HookParams = {
+  const beforeHookParams: HookParams = {
     progress: {
       ms:     0,
       series: 0,
@@ -32,12 +40,12 @@ function animationSeries({
 
   const namespace = namespaceClassName || config?.namespace || 'animation';
   const inProgress = config?.inProgress || 'inprogess';
-  const classes: Types.Classes = {
+  const classes: ClassNames = {
     inProgress: `${namespace}__${seriesClassName}__${inProgress}`,
     current:    '',
     previous:   ''
   };
-  const duration: Types.Duration = {
+  const duration: Duration = {
     stepsFiredMinusCurrent: 0,
     // This acts as a way to keep track of steps being fired, and when to fire them.
     // When a step is fired, the duration of that step is added to the current duration.
@@ -81,13 +89,13 @@ function animationSeries({
 
     // The time that has elapsed since the animation series began
     const runtime = timestamp - start;
-    const step: Types.Step = steps[stepIndex];
+    const step: Step = steps[stepIndex];
     // This will allow for no longer needing to pass a name to each step, by setting a default.
     // If this function only needs to be used for basic hooks, then there's
     // no need for class names.
     const stepName: string = step.name ? step.name : `step-${stepIndex + 1}`;
     const stepHooks = step ? step.hooks : null;
-    const hookParams: Types.HookParams = {
+    const hookParams: HookParams = {
       progress: {
         ms:     runtime,
         // progress of entire animation series represented as a number between 0 and 1.
@@ -141,8 +149,8 @@ function animationSeries({
       // ======== //
       // HOOK: afterClassNameChange
       // ======== //
-      if (hooks && hooks.afterEachClassNameChange) hooks.afterEachClassNameChange(hookParams);
-      if (stepHooks && stepHooks.afterClassNameChange) stepHooks.afterClassNameChange(hookParams);
+      if (element && hooks && hooks.afterEachClassNameChange) hooks.afterEachClassNameChange(hookParams);
+      if (element && stepHooks && stepHooks.afterClassNameChange) stepHooks.afterClassNameChange(hookParams);
 
       // Set previous properties for the next step to use
       classes.previous = `${namespace}__${seriesClassName}__${stepName}`;
@@ -211,13 +219,11 @@ function animationSeries({
 
 const SimplyAnimate = {
   animationSeries,
-  updateConfig,
-  Types
+  updateConfig
 };
 
 export default SimplyAnimate;
 export {
   animationSeries,
-  updateConfig,
-  Types
+  updateConfig
 };
